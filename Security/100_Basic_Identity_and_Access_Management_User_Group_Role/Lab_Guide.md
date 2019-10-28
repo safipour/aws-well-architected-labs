@@ -68,27 +68,30 @@ To create an administrator role for yourself (and other administrators) to be us
 
 ![iam-role-2](Images/iam-role-create-2.png)
 
-5. Enter a role name, e.g. 'Admin-Role' then click **Create role**.
+5. Enter a role name, e.g. 'AdminRole' then click **Create role**.
 
 ![iam-role-3](Images/iam-role-create-3.png)
 
 6. Check the role you have configured by clicking the role you have just created. Record both the Role ARN and the link to the console. You can also optionally change the session duration timeout. ![iam-role-created](Images/iam-role-created.png)
 6. The role is now created, with full administrative access and MFA enforced.
 
-### 1.3 Allow user 'Bob' to assume Administrator IAM Role
+### 1.3 Allow user 'Bob' to assume Administrator Role
 
 1. Once user Bob is created go back to the IAM Console and select **Groups** to find the **Admins** group you created in last step. Select the group and go to **Permissions** tab and **Inline Policies**. Click on **To create one, click here**.
-Select **Customer Policy** and **Select**. Set Policy Name as **AssumeRole** and in the Policy Document type:
+Select **Customer Policy** and **Select**. Set Policy Name as **AssumeRole** and in the Policy Document paste following after putting your own account ID:
 
 `{
   "Version": "2012-10-17",
   "Statement": {
     "Effect": "Allow",
     "Action": "sts:AssumeRole",
-    "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/Admin-Role"
+    "Resource": "arn:aws:iam::ACCOUNT-ID-WITHOUT-HYPHENS:role/AdminRole"
   }
 }`
 
+![user-inlinepolicy](Images/user-inlinepolicy.png)
+
+![user-inlinepolicy2](Images/user-inlinepolicy2.png)
 
 
 ## 2. Assume Administrator Role from an IAM user
